@@ -53,4 +53,4 @@ To run this project locally:
 
 1. **Clone the Repo:**
    ```bash
-   git clone [https://github.com/your-username/HDFC-Loan-Predictor.git](https://github.com/your-username/HDFC-Loan-Predictor.git)
+   git clone [https://github.com/akshat09105/HDFC-Loan-Predictor.git](https://github.com/akshat09105/HDFC-Loan-Predictor.git)
