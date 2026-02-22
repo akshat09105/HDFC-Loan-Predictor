@@ -128,7 +128,7 @@ if page == "🏠 Home: The Logic":
     with cl:
         st.markdown("""
         <div class='logic-box'>
-        <b>1. Binary Specialist:</b>It is considered the gold standard for loan decisions (Yes/No) because it provides classification probabilities..<br><br>
+        <b>1. Binary Specialist:</b> It is considered the gold standard for loan decisions (Yes/No) because it provides classification probabilities..<br><br>
         <b>2. Mathematically Interpretable:</b> For HDFC’s risk assessment, it is important to understand how <b>CIBIL</b> and <b>Total Assets</b> influenced the decision-making process.<br><br>
         <b>3. Scalable Logic:</b> We simplified the total wealth by calculating the sum of assets, which Logistic Regression can process very efficiently.
         </div>
@@ -220,3 +220,4 @@ elif page == "👥 Meet the Team":
 
 
     st.write("<br><br><p style='text-align: center; color: gray;'>Computer Engineering Project | Thapar University</p>", unsafe_allow_html=True)
+
