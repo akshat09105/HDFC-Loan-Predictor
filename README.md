@@ -60,4 +60,4 @@ This provides a stronger collateral signal to the model, significantly boosting 
 ## ⚙️ How to Run Locally
 1. **Clone the Repo:**
    ```bash
-   git clone [https://github.com/your-username/HDFC-Loan-Predictor.git](https://github.com/your-username/HDFC-Loan-Predictor.git)
+   git clone [https://github.com/your-username/HDFC-Loan-Predictor.git](https://github.com/akshat09105/HDFC-Loan-Predictor.git)
