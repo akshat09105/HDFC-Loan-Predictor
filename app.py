@@ -117,20 +117,20 @@ if page == "🏠 Home: The Logic":
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown("<div class='metric-card'><h1>90.2%</h1><p>Model Accuracy</p></div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-card'><h1>98.7%</h1><p>Model Accuracy</p></div>", unsafe_allow_html=True)
     with col2:
-        st.markdown("<div class='metric-card'><h2>Logistic Reg</h2><p>Core Algorithm</p></div>", unsafe_allow_html=True)
+        st.markdown("<div class='metric-card'><h2>Random Forest</h2><p>Core Algorithm</p></div>", unsafe_allow_html=True)
     with col3:
         st.markdown("<div class='metric-card'><h2>9 Optimized</h2><p>Data Features</p></div>", unsafe_allow_html=True)
 
-    st.markdown("### 🧠 Why Logistic Regression was the Best Choice?")
+    st.markdown("### 🧠 Why Random Forest was the Best Choice?")
     cl, cr = st.columns([1.5, 1])
     with cl:
         st.markdown("""
         <div class='logic-box'>
-        <b>1. Binary Specialist:</b> It is considered the gold standard for loan decisions (Yes/No) because it provides classification probabilities..<br><br>
+        <b>1. Binary :</b> It is considered the gold standard for loan decisions (Yes/No) because it provides classification probabilities..<br><br>
         <b>2. Mathematically Interpretable:</b> For HDFC’s risk assessment, it is important to understand how <b>CIBIL</b> and <b>Total Assets</b> influenced the decision-making process.<br><br>
-        <b>3. Scalable Logic:</b> We simplified the total wealth by calculating the sum of assets, which Logistic Regression can process very efficiently.
+        <b>3. Scalable Logic:</b> We simplified the total wealth by calculating the sum of assets, which Random Forest can process very efficiently.
         </div>
         """, unsafe_allow_html=True)
     with cr:
@@ -220,4 +220,5 @@ elif page == "👥 Meet the Team":
 
 
     st.write("<br><br><p style='text-align: center; color: gray;'>Computer Engineering Project | Thapar University</p>", unsafe_allow_html=True)
+
 
