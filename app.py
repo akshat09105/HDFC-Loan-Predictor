@@ -137,7 +137,7 @@ if page == "🏠 Home: The Logic":
         st.image("https://img.freepik.com/free-vector/bank-manager-concept-illustration_114360-7023.jpg")
 
 # ==========================================
-# PAGE 2: LOAN PREDICTOR (9-FEATURE LOGIC)
+# PAGE 2: LOAN PREDICTOR (9-FEATURE LOGIC + HARD RULES)
 # ==========================================
 elif page == "📊 Loan Predictor":
     st.markdown("<h2>📊 AI Eligibility Predictor</h2>", unsafe_allow_html=True)
@@ -168,28 +168,43 @@ elif page == "📊 Loan Predictor":
             submit = st.form_submit_button("Check Approval Status")
 
     if submit:
-        # Asset Summation Logic
+        # 1. Logic Calculation
         total_assets = res + comm + lux
         edu_val = 1 if edu == "Graduate" else 0
         emp_val = 1 if emp == "Yes" else 0
         
-        # Exact Column Order for Model [9 Features]:
-        # [dep, edu, emp, inc, l_amt, term, cibil, bank, total]
-        raw_input = np.array([[dependents, edu_val, emp_val, income, loan_amt, term, cibil, bank_assets, total_assets]])
+        # 2. THE HARD RULE: Rejection if loan > 2x of assets
+        max_limit = 2 * (total_assets + bank_assets)
         
-        with st.spinner("AI Analysis in progress..."):
-            time.sleep(1)
-            # Scaling data before prediction
-            scaled_input = scaler.transform(raw_input)
-            prediction = model.predict(scaled_input)
+        st.markdown("---")
+        
+        if loan_amt > max_limit:
+            # Immediate rejection without checking the model
+            st.markdown(f"""
+                <div style='background:#f8d7da; padding:20px; border-radius:10px; color:#721c24; text-align:center; font-size:24px; font-weight:bold;'>
+                    ❌ LOAN REJECTED
+                </div>
+                <p style='text-align:center; color:#721c24; margin-top:10px;'>
+                    <b>Reason:</b> Loan amount (₹{loan_amt:,}) exceeds our maximum threshold (₹{max_limit:,}) 
+                    based on your current assets.
+                </p>
+            """, unsafe_allow_html=True)
+        else:
+            # 3. Model Prediction (if assets are enough)
+            raw_input = np.array([[dependents, edu_val, emp_val, income, loan_amt, term, cibil, bank_assets, total_assets]])
             
-            st.markdown("---")
-            if prediction[0] == 1:
-                st.balloons()
-                st.markdown("<div style='background:#d4edda; padding:20px; border-radius:10px; color:#155724; text-align:center; font-size:24px; font-weight:bold;'>✅ LOAN APPROVED</div>", unsafe_allow_html=True)
-            else:
-                st.markdown("<div style='background:#f8d7da; padding:20px; border-radius:10px; color:#721c24; text-align:center; font-size:24px; font-weight:bold;'>❌ LOAN REJECTED</div>", unsafe_allow_html=True)
-
+            with st.spinner("AI Analysis in progress..."):
+                time.sleep(1)
+                scaled_input = scaler.transform(raw_input)
+                prediction = model.predict(scaled_input)
+                
+                if prediction[0] == 1:
+                    st.balloons()
+                    st.markdown("<div style='background:#d4edda; padding:20px; border-radius:10px; color:#155724; text-align:center; font-size:24px; font-weight:bold;'>✅ LOAN APPROVED</div>", unsafe_allow_html=True)
+                    st.success("Congratulations! You meet our AI risk assessment criteria.")
+                else:
+                    st.markdown("<div style='background:#f8d7da; padding:20px; border-radius:10px; color:#721c24; text-align:center; font-size:24px; font-weight:bold;'>❌ LOAN REJECTED</div>", unsafe_allow_html=True)
+                    st.error("Application failed our credit risk model checks.")
 # ==========================================
 # PAGE 3: TEAM (PROMINENT LEAD BOX)
 # ==========================================
@@ -220,5 +235,6 @@ elif page == "👥 Meet the Team":
 
 
     st.write("<br><br><p style='text-align: center; color: gray;'>Computer Engineering Project | Thapar University</p>", unsafe_allow_html=True)
+
 
 
